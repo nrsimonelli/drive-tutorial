@@ -14,7 +14,7 @@ import {
  * @see https://orm.drizzle.team/docs/goodies#multi-project-schema
  */
 export const createTable = singlestoreTableCreator(
-  (name) => `drive_tutorial_${name}`,
+  (name) => `drive-tutorial-db_${name}`,
 );
 
 export const files_table = createTable(
