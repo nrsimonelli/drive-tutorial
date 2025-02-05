@@ -1,62 +1,74 @@
 export interface File {
-  id: string
-  name: string
-  type: "file" | "folder"
-  url?: string
-  size?: string
+  id: string;
+  name: string;
+  type: "file";
+  url: string;
+  parent: string;
+  size: string;
 }
 
-export interface Folder {
-  id: string
-  name: string
-  files: File[]
-}
+export type Folder = {
+  id: string;
+  name: string;
+  type: "folder";
+  parent: string | null;
+};
 
-export const mockData: Folder[] = [
+export const mockFolders: Folder[] = [
+  { id: "root", name: "root", type: "folder", parent: null },
+  { id: "1", name: "Documents", type: "folder", parent: "root" },
+  { id: "2", name: "Images", type: "folder", parent: "root" },
+  { id: "3", name: "Work", type: "folder", parent: "root" },
+  { id: "4", name: "Presentations", type: "folder", parent: "3" },
+];
+
+export const mockFiles: File[] = [
   {
-    id: "root",
-    name: "My Drive",
-    files: [
-      { id: "1", name: "Documents", type: "folder" },
-      { id: "2", name: "Images", type: "folder" },
-      { id: "3", name: "resume.pdf", type: "file", url: "/files/resume.pdf", size: "2.1 MB" },
-      { id: "4", name: "notes.txt", type: "file", url: "/files/notes.txt", size: "14 KB" },
-    ],
-  },
-  {
-    id: "1",
-    name: "Documents",
-    files: [
-      { id: "5", name: "Work", type: "folder" },
-      { id: "6", name: "Personal", type: "folder" },
-      { id: "7", name: "report.docx", type: "file", url: "/files/report.docx", size: "1.8 MB" },
-    ],
-  },
-  {
-    id: "2",
-    name: "Images",
-    files: [
-      { id: "8", name: "Vacation", type: "folder" },
-      { id: "9", name: "profile.jpg", type: "file", url: "/files/profile.jpg", size: "3.2 MB" },
-    ],
+    id: "4",
+    name: "Resume.pdf",
+    type: "file",
+    url: "/files/resume.pdf",
+    parent: "root",
+    size: "1.2 MB",
   },
   {
     id: "5",
-    name: "Work",
-    files: [{ id: "10", name: "project_plan.xlsx", type: "file", url: "/files/project_plan.xlsx", size: "5.7 MB" }],
+    name: "Project Proposal.docx",
+    type: "file",
+    url: "/files/proposal.docx",
+    parent: "1",
+    size: "2.5 MB",
   },
   {
     id: "6",
-    name: "Personal",
-    files: [],
+    name: "Vacation.jpg",
+    type: "file",
+    url: "/files/vacation.jpg",
+    parent: "2",
+    size: "3.7 MB",
   },
   {
-    id: "8",
-    name: "Vacation",
-    files: [
-      { id: "11", name: "beach.jpg", type: "file", url: "/files/beach.jpg", size: "4.5 MB" },
-      { id: "12", name: "mountains.jpg", type: "file", url: "/files/mountains.jpg", size: "3.8 MB" },
-    ],
+    id: "7",
+    name: "Profile Picture.png",
+    type: "file",
+    url: "/files/profile.png",
+    parent: "2",
+    size: "1.8 MB",
   },
-]
-
+  {
+    id: "9",
+    name: "Q4 Report.pptx",
+    type: "file",
+    url: "/files/q4-report.pptx",
+    parent: "8",
+    size: "5.2 MB",
+  },
+  {
+    id: "10",
+    name: "Budget.xlsx",
+    type: "file",
+    url: "/files/budget.xlsx",
+    parent: "3",
+    size: "1.5 MB",
+  },
+];
